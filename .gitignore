@@ -1,0 +1,19 @@
+# System files
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.env
+venv/
+.idea/
+.vscode/
+
+# Build files
+build/
+dist/
+*.dmg
+*.sparseimage
+temp*
