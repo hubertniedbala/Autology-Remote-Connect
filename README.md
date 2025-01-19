@@ -27,16 +27,24 @@ Aplikacja kliencka dla systemu macOS umożliwiająca zdalne połączenie z serwe
 
 ### Instalacja zależności
 Instalacja narzędzi przez Homebrew
-```brew install create-dmg fileicon```
+```
+brew install create-dmg fileicon
+```
 Instalacja zależności Pythona
-```pip3.11 install -r requirements.txt```
+```
+pip3.11 install -r requirements.txt
+```
 
 ## Budowanie aplikacji
 
 Nadaj uprawnienia wykonywania dla skryptu build
-```chmod +x build.sh```
+```
+chmod +x build.sh
+```
 Uruchom skrypt budujący
-```./build.sh```
+```
+./build.sh
+```
 
 ## 📦 Instalacja
 
