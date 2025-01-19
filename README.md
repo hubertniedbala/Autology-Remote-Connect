@@ -1,65 +1,81 @@
 # Autology Remote Connect
 
-Aplikacja kliencka dla systemu macOS umożliwiająca zdalne połączenie z serwerem Autology.
+Aplikacja proxy dla systemu macOS umożliwiająca bezpieczną komunikację między aplikacją chmurową Autology Pilot App a dronem Parrot Anafi.
 
 ## 🌟 Główne funkcje
 
-- 🖥️ Aplikacja w pasku menu macOS
-- 🔗 Bezpieczne zdalne połączenie
-- 🚀 Automatyczny start przy uruchomieniu systemu
-- 🔒 Podpisana cyfrowo aplikacja
-- 📦 Prosty instalator DMG
+- 🔄 Serwer proxy dla komunikacji z dronem
+- 🔒 Bezpieczna autoryzacja przez JWT
+- ☁️ Automatyczna konfiguracja tunelu Cloudflared
+- 📊 Monitorowanie stanu połączenia
+- 📝 System logowania i eksportu logów
 
 ## 💻 Wymagania systemowe
 
 - macOS 10.15 lub nowszy
 - Python 3.11
 - Połączenie internetowe
-- Konto Autology
+- Dron Parrot Anafi w sieci lokalnej
 
-## 🛠️ Rozwój aplikacji
+## 🛠️ Instalacja
+
+1. Pobierz najnowszą wersję aplikacji z sekcji [Releases](../../releases)
+2. Otwórz plik DMG
+3. Przeciągnij aplikację do folderu Applications
+4. Uruchom aplikację
+
+## 📋 Użytkowanie
+
+### Menu aplikacji
+- **Start Server** - Uruchamia serwer proxy i tunel Cloudflared
+- **Stop Server** - Zatrzymuje serwer i tunel
+- **Check Status** - Sprawdza stan serwera
+- **Start/Stop Monitoring** - Zarządza automatycznym monitorowaniem
+- **Export Logs** - Eksportuje logi (ZIP/TXT)
+
+### API Endpoints
+- `/start-server` - Uruchamia serwer (POST)
+- `/stop-server` - Zatrzymuje serwer (POST)
+- `/proxy/<path>` - Endpoint proxy dla żądań do drona
+- `/status` - Sprawdza stan serwera (GET)
+- `/check-drone` - Sprawdza połączenie z dronem (GET)
+- `/logs` - Pobiera logi (GET)
+- `/logs/export` - Eksportuje logi do ZIP (GET)
+- `/logs/export/txt` - Eksportuje logi do TXT (GET)
+
+## 🔒 Bezpieczeństwo
+
+- Wszystkie endpointy wymagają autoryzacji JWT
+- Automatyczne czyszczenie starych logów
+- Bezpieczny tunel Cloudflared
+
+## 📝 Logi
+
+Logi są przechowywane w:
+```
+~/Library/Logs/AutologyRemoteConnect/
+```
+- Automatyczna rotacja przy 10MB
+- Maksymalnie 5 plików logów
+- Automatyczne czyszczenie po 30 dniach
+- Eksporty są czyszczone po 7 dniach
+
+## 🛠️ Rozwój
 
 ### Wymagane narzędzia
-- Python 3.11
-- Homebrew
-- create-dmg
-- fileicon
 
-### Instalacja zależności
-Instalacja narzędzi przez Homebrew
+## Instalacja zależności
 ```
-brew install create-dmg fileicon
+pip install -r requirements.txt
 ```
-Instalacja zależności Pythona
-```
-pip3.11 install -r requirements.txt
-```
-
-## Budowanie aplikacji
-
-Nadaj uprawnienia wykonywania dla skryptu build
+## Nadaj uprawnienia wykonywania dla skryptu build
 ```
 chmod +x build.sh
 ```
-Uruchom skrypt budujący
+## Zbuduj aplikację
 ```
 ./build.sh
 ```
-
-## 📦 Instalacja
-
-1. Pobierz najnowszą wersję z zakładki [Releases](../../releases)
-2. Otwórz pobrany plik DMG
-3. Przeciągnij aplikację do folderu Applications
-4. Uruchom aplikację z folderu Applications
-
-## 🔧 Struktura projektu
-
-- `menubar_app.py` - Główny plik aplikacji
-- `setup.py` - Konfiguracja budowania
-- `build.sh` - Skrypt budujący
-- `entitlements.plist` - Uprawnienia aplikacji
-- `requirements.txt` - Zależności Pythona
 
 ## 📝 Licencja
 
